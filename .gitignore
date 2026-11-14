@@ -7,3 +7,8 @@ results/preds_fake*.jsonl
 results/*_out/
 __pycache__/
 *.safetensors
+hf/
+results/_*/
+results/plain_out/
+results/lisa_out/
+results/lisa300_out/
