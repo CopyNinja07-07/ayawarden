@@ -1,0 +1,9 @@
+.venv/
+ref/
+logs/
+kaggle/data/
+results/_log/
+results/preds_fake*.jsonl
+results/*_out/
+__pycache__/
+*.safetensors
