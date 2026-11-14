@@ -11,7 +11,7 @@
 | **Team** | RBoysXAi: Suryansh Pratap Singh ([@SuryanshHere](https://huggingface.co/SuryanshHere)), Nikhil Kumar ([@nobleimposter](https://huggingface.co/nobleimposter)), Raj Jha ([@0xr4j](https://huggingface.co/0xr4j)) |
 | **Models** | [ayawarden-tiny-aya-plain-sft-lora](https://huggingface.co/SuryanshHere/ayawarden-tiny-aya-plain-sft-lora) (best) · [ayawarden-tiny-aya-lisa-lora](https://huggingface.co/SuryanshHere/ayawarden-tiny-aya-lisa-lora) |
 | **Dataset** | [ayawarden-multilingual-injection](https://huggingface.co/datasets/SuryanshHere/ayawarden-multilingual-injection) (data, CuratorKIT exports, all predictions, reports) |
-| **Collections** | [Models collection](https://huggingface.co/collections/SuryanshHere/ayawarden-models-lexsi-hackathon-track-2-6af8e68a7005c13853485734) · [Datasets collection](https://huggingface.co/collections/SuryanshHere/ayawarden-datasets-lexsi-hackathon-track-2-6af8e69b06eee63526cf76ff) |
+| **Collections** | [Models collection](https://huggingface.co/collections/SuryanshHere/ayawarden-models-lexsi-hackathon-track-2) · [Datasets collection](https://huggingface.co/collections/SuryanshHere/ayawarden-datasets-lexsi-hackathon-track-2) |
 
 ## Abstract
 
