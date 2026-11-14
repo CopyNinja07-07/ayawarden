@@ -1,0 +1,8 @@
+{
+ "method": "lisa",
+ "gpu": "Tesla T4",
+ "safety_rows": 6,
+ "trainable_params": 30228480,
+ "adapter": "/kaggle/working/adapter_lisa",
+ "train_seconds": 3532
+}

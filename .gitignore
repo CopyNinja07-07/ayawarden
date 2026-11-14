@@ -1,6 +1,6 @@
 .venv/
 ref/
-logs/
+/logs/
 kaggle/data/
 results/_log/
 results/preds_fake*.jsonl
