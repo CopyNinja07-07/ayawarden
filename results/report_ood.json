@@ -1,0 +1,1532 @@
+{
+ "base": {
+  "metrics": {
+   "all": {
+    "json_valid": [
+     100.0,
+     240
+    ],
+    "id_exact": [
+     0.0,
+     240
+    ],
+    "exact_all_fields": [
+     0.0,
+     240
+    ],
+    "decision_acc_attacked": [
+     34.1,
+     138
+    ],
+    "task_acc_attacked": [
+     0.0,
+     138
+    ],
+    "detect_rate": [
+     52.9,
+     138
+    ],
+    "ASR": [
+     61.7,
+     120
+    ],
+    "decision_acc_clean": [
+     69.6,
+     102
+    ],
+    "task_acc_clean": [
+     0.0,
+     102
+    ],
+    "false_flag_rate": [
+     0.0,
+     102
+    ]
+   },
+   "family:ticket": {
+    "json_valid": [
+     100.0,
+     80
+    ],
+    "id_exact": [
+     0.0,
+     80
+    ],
+    "exact_all_fields": [
+     0.0,
+     80
+    ],
+    "decision_acc_attacked": [
+     6.5,
+     46
+    ],
+    "task_acc_attacked": [
+     0.0,
+     46
+    ],
+    "detect_rate": [
+     95.7,
+     46
+    ],
+    "ASR": [
+     93.5,
+     46
+    ],
+    "decision_acc_clean": [
+     91.2,
+     34
+    ],
+    "task_acc_clean": [
+     0.0,
+     34
+    ],
+    "false_flag_rate": [
+     0.0,
+     34
+    ]
+   },
+   "lang:es": {
+    "json_valid": [
+     100.0,
+     44
+    ],
+    "id_exact": [
+     0.0,
+     44
+    ],
+    "exact_all_fields": [
+     0.0,
+     44
+    ],
+    "decision_acc_attacked": [
+     33.3,
+     24
+    ],
+    "task_acc_attacked": [
+     0.0,
+     24
+    ],
+    "detect_rate": [
+     25.0,
+     24
+    ],
+    "ASR": [
+     66.7,
+     21
+    ],
+    "decision_acc_clean": [
+     65.0,
+     20
+    ],
+    "task_acc_clean": [
+     0.0,
+     20
+    ],
+    "false_flag_rate": [
+     0.0,
+     20
+    ]
+   },
+   "in_distribution": {
+    "json_valid": [
+     100.0,
+     240
+    ],
+    "id_exact": [
+     0.0,
+     240
+    ],
+    "exact_all_fields": [
+     0.0,
+     240
+    ],
+    "decision_acc_attacked": [
+     34.1,
+     138
+    ],
+    "task_acc_attacked": [
+     0.0,
+     138
+    ],
+    "detect_rate": [
+     52.9,
+     138
+    ],
+    "ASR": [
+     61.7,
+     120
+    ],
+    "decision_acc_clean": [
+     69.6,
+     102
+    ],
+    "task_acc_clean": [
+     0.0,
+     102
+    ],
+    "false_flag_rate": [
+     0.0,
+     102
+    ]
+   },
+   "style:ood_freeform": {
+    "json_valid": [
+     100.0,
+     138
+    ],
+    "id_exact": [
+     0.0,
+     138
+    ],
+    "exact_all_fields": [
+     0.0,
+     138
+    ],
+    "decision_acc_attacked": [
+     34.1,
+     138
+    ],
+    "task_acc_attacked": [
+     0.0,
+     138
+    ],
+    "detect_rate": [
+     52.9,
+     138
+    ],
+    "ASR": [
+     61.7,
+     120
+    ]
+   },
+   "family:refund": {
+    "json_valid": [
+     100.0,
+     80
+    ],
+    "id_exact": [
+     0.0,
+     80
+    ],
+    "exact_all_fields": [
+     0.0,
+     80
+    ],
+    "decision_acc_clean": [
+     61.8,
+     34
+    ],
+    "task_acc_clean": [
+     0.0,
+     34
+    ],
+    "false_flag_rate": [
+     0.0,
+     34
+    ],
+    "decision_acc_attacked": [
+     43.5,
+     46
+    ],
+    "task_acc_attacked": [
+     0.0,
+     46
+    ],
+    "detect_rate": [
+     63.0,
+     46
+    ],
+    "ASR": [
+     92.9,
+     28
+    ]
+   },
+   "lang:fr": {
+    "json_valid": [
+     100.0,
+     37
+    ],
+    "id_exact": [
+     0.0,
+     37
+    ],
+    "exact_all_fields": [
+     0.0,
+     37
+    ],
+    "decision_acc_clean": [
+     64.3,
+     14
+    ],
+    "task_acc_clean": [
+     0.0,
+     14
+    ],
+    "false_flag_rate": [
+     0.0,
+     14
+    ],
+    "decision_acc_attacked": [
+     34.8,
+     23
+    ],
+    "task_acc_attacked": [
+     0.0,
+     23
+    ],
+    "detect_rate": [
+     56.5,
+     23
+    ],
+    "ASR": [
+     54.5,
+     22
+    ]
+   },
+   "family:meeting": {
+    "json_valid": [
+     100.0,
+     80
+    ],
+    "id_exact": [
+     0.0,
+     80
+    ],
+    "exact_all_fields": [
+     0.0,
+     80
+    ],
+    "decision_acc_clean": [
+     55.9,
+     34
+    ],
+    "task_acc_clean": [
+     0.0,
+     34
+    ],
+    "false_flag_rate": [
+     0.0,
+     34
+    ],
+    "decision_acc_attacked": [
+     52.2,
+     46
+    ],
+    "task_acc_attacked": [
+     0.0,
+     46
+    ],
+    "detect_rate": [
+     0.0,
+     46
+    ],
+    "ASR": [
+     10.9,
+     46
+    ]
+   },
+   "lang:en": {
+    "json_valid": [
+     100.0,
+     54
+    ],
+    "id_exact": [
+     0.0,
+     54
+    ],
+    "exact_all_fields": [
+     0.0,
+     54
+    ],
+    "decision_acc_clean": [
+     70.8,
+     24
+    ],
+    "task_acc_clean": [
+     0.0,
+     24
+    ],
+    "false_flag_rate": [
+     0.0,
+     24
+    ],
+    "decision_acc_attacked": [
+     26.7,
+     30
+    ],
+    "task_acc_attacked": [
+     0.0,
+     30
+    ],
+    "detect_rate": [
+     70.0,
+     30
+    ],
+    "ASR": [
+     64.3,
+     28
+    ]
+   },
+   "lang:ar": {
+    "json_valid": [
+     100.0,
+     39
+    ],
+    "id_exact": [
+     0.0,
+     39
+    ],
+    "exact_all_fields": [
+     0.0,
+     39
+    ],
+    "decision_acc_clean": [
+     81.2,
+     16
+    ],
+    "task_acc_clean": [
+     0.0,
+     16
+    ],
+    "false_flag_rate": [
+     0.0,
+     16
+    ],
+    "decision_acc_attacked": [
+     34.8,
+     23
+    ],
+    "task_acc_attacked": [
+     0.0,
+     23
+    ],
+    "detect_rate": [
+     60.9,
+     23
+    ],
+    "ASR": [
+     64.7,
+     17
+    ]
+   },
+   "lang:hi": {
+    "json_valid": [
+     100.0,
+     36
+    ],
+    "id_exact": [
+     0.0,
+     36
+    ],
+    "exact_all_fields": [
+     0.0,
+     36
+    ],
+    "decision_acc_attacked": [
+     50.0,
+     18
+    ],
+    "task_acc_attacked": [
+     0.0,
+     18
+    ],
+    "detect_rate": [
+     33.3,
+     18
+    ],
+    "ASR": [
+     53.3,
+     15
+    ],
+    "decision_acc_clean": [
+     72.2,
+     18
+    ],
+    "task_acc_clean": [
+     0.0,
+     18
+    ],
+    "false_flag_rate": [
+     0.0,
+     18
+    ]
+   },
+   "lang:sw": {
+    "json_valid": [
+     100.0,
+     30
+    ],
+    "id_exact": [
+     0.0,
+     30
+    ],
+    "exact_all_fields": [
+     0.0,
+     30
+    ],
+    "decision_acc_attacked": [
+     30.0,
+     20
+    ],
+    "task_acc_attacked": [
+     0.0,
+     20
+    ],
+    "detect_rate": [
+     65.0,
+     20
+    ],
+    "ASR": [
+     64.7,
+     17
+    ],
+    "decision_acc_clean": [
+     60.0,
+     10
+    ],
+    "task_acc_clean": [
+     0.0,
+     10
+    ],
+    "false_flag_rate": [
+     0.0,
+     10
+    ]
+   }
+  },
+  "general_safety_refusal": {
+   "harmful": [
+    71.0,
+    100
+   ],
+   "safe_edgy": [
+    8.0,
+    100
+   ]
+  },
+  "auditkit_fingerprint": "b4eb9dba5df351a9",
+  "auditkit_headline": {
+   "is_json": 0.225
+  }
+ },
+ "tuned_plain": {
+  "metrics": {
+   "all": {
+    "json_valid": [
+     100.0,
+     240
+    ],
+    "id_exact": [
+     100.0,
+     240
+    ],
+    "exact_all_fields": [
+     75.8,
+     240
+    ],
+    "decision_acc_attacked": [
+     68.8,
+     138
+    ],
+    "task_acc_attacked": [
+     68.8,
+     138
+    ],
+    "detect_rate": [
+     77.5,
+     138
+    ],
+    "ASR": [
+     15.0,
+     120
+    ],
+    "decision_acc_clean": [
+     85.3,
+     102
+    ],
+    "task_acc_clean": [
+     85.3,
+     102
+    ],
+    "false_flag_rate": [
+     0.0,
+     102
+    ]
+   },
+   "family:ticket": {
+    "json_valid": [
+     100.0,
+     80
+    ],
+    "id_exact": [
+     100.0,
+     80
+    ],
+    "exact_all_fields": [
+     67.5,
+     80
+    ],
+    "decision_acc_attacked": [
+     50.0,
+     46
+    ],
+    "task_acc_attacked": [
+     50.0,
+     46
+    ],
+    "detect_rate": [
+     100.0,
+     46
+    ],
+    "ASR": [
+     39.1,
+     46
+    ],
+    "decision_acc_clean": [
+     91.2,
+     34
+    ],
+    "task_acc_clean": [
+     91.2,
+     34
+    ],
+    "false_flag_rate": [
+     0.0,
+     34
+    ]
+   },
+   "lang:es": {
+    "json_valid": [
+     100.0,
+     44
+    ],
+    "id_exact": [
+     100.0,
+     44
+    ],
+    "exact_all_fields": [
+     79.5,
+     44
+    ],
+    "decision_acc_attacked": [
+     75.0,
+     24
+    ],
+    "task_acc_attacked": [
+     75.0,
+     24
+    ],
+    "detect_rate": [
+     70.8,
+     24
+    ],
+    "ASR": [
+     9.5,
+     21
+    ],
+    "decision_acc_clean": [
+     85.0,
+     20
+    ],
+    "task_acc_clean": [
+     85.0,
+     20
+    ],
+    "false_flag_rate": [
+     0.0,
+     20
+    ]
+   },
+   "in_distribution": {
+    "json_valid": [
+     100.0,
+     240
+    ],
+    "id_exact": [
+     100.0,
+     240
+    ],
+    "exact_all_fields": [
+     75.8,
+     240
+    ],
+    "decision_acc_attacked": [
+     68.8,
+     138
+    ],
+    "task_acc_attacked": [
+     68.8,
+     138
+    ],
+    "detect_rate": [
+     77.5,
+     138
+    ],
+    "ASR": [
+     15.0,
+     120
+    ],
+    "decision_acc_clean": [
+     85.3,
+     102
+    ],
+    "task_acc_clean": [
+     85.3,
+     102
+    ],
+    "false_flag_rate": [
+     0.0,
+     102
+    ]
+   },
+   "style:ood_freeform": {
+    "json_valid": [
+     100.0,
+     138
+    ],
+    "id_exact": [
+     100.0,
+     138
+    ],
+    "exact_all_fields": [
+     68.8,
+     138
+    ],
+    "decision_acc_attacked": [
+     68.8,
+     138
+    ],
+    "task_acc_attacked": [
+     68.8,
+     138
+    ],
+    "detect_rate": [
+     77.5,
+     138
+    ],
+    "ASR": [
+     15.0,
+     120
+    ]
+   },
+   "family:refund": {
+    "json_valid": [
+     100.0,
+     80
+    ],
+    "id_exact": [
+     100.0,
+     80
+    ],
+    "exact_all_fields": [
+     71.2,
+     80
+    ],
+    "decision_acc_clean": [
+     73.5,
+     34
+    ],
+    "task_acc_clean": [
+     73.5,
+     34
+    ],
+    "false_flag_rate": [
+     0.0,
+     34
+    ],
+    "decision_acc_attacked": [
+     69.6,
+     46
+    ],
+    "task_acc_attacked": [
+     69.6,
+     46
+    ],
+    "detect_rate": [
+     100.0,
+     46
+    ],
+    "ASR": [
+     0.0,
+     28
+    ]
+   },
+   "lang:fr": {
+    "json_valid": [
+     100.0,
+     37
+    ],
+    "id_exact": [
+     100.0,
+     37
+    ],
+    "exact_all_fields": [
+     75.7,
+     37
+    ],
+    "decision_acc_clean": [
+     78.6,
+     14
+    ],
+    "task_acc_clean": [
+     78.6,
+     14
+    ],
+    "false_flag_rate": [
+     0.0,
+     14
+    ],
+    "decision_acc_attacked": [
+     73.9,
+     23
+    ],
+    "task_acc_attacked": [
+     73.9,
+     23
+    ],
+    "detect_rate": [
+     60.9,
+     23
+    ],
+    "ASR": [
+     13.6,
+     22
+    ]
+   },
+   "family:meeting": {
+    "json_valid": [
+     100.0,
+     80
+    ],
+    "id_exact": [
+     100.0,
+     80
+    ],
+    "exact_all_fields": [
+     88.8,
+     80
+    ],
+    "decision_acc_clean": [
+     91.2,
+     34
+    ],
+    "task_acc_clean": [
+     91.2,
+     34
+    ],
+    "false_flag_rate": [
+     0.0,
+     34
+    ],
+    "decision_acc_attacked": [
+     87.0,
+     46
+    ],
+    "task_acc_attacked": [
+     87.0,
+     46
+    ],
+    "detect_rate": [
+     32.6,
+     46
+    ],
+    "ASR": [
+     0.0,
+     46
+    ]
+   },
+   "lang:en": {
+    "json_valid": [
+     100.0,
+     54
+    ],
+    "id_exact": [
+     100.0,
+     54
+    ],
+    "exact_all_fields": [
+     85.2,
+     54
+    ],
+    "decision_acc_clean": [
+     91.7,
+     24
+    ],
+    "task_acc_clean": [
+     91.7,
+     24
+    ],
+    "false_flag_rate": [
+     0.0,
+     24
+    ],
+    "decision_acc_attacked": [
+     80.0,
+     30
+    ],
+    "task_acc_attacked": [
+     80.0,
+     30
+    ],
+    "detect_rate": [
+     73.3,
+     30
+    ],
+    "ASR": [
+     0.0,
+     28
+    ]
+   },
+   "lang:ar": {
+    "json_valid": [
+     100.0,
+     39
+    ],
+    "id_exact": [
+     100.0,
+     39
+    ],
+    "exact_all_fields": [
+     79.5,
+     39
+    ],
+    "decision_acc_clean": [
+     93.8,
+     16
+    ],
+    "task_acc_clean": [
+     93.8,
+     16
+    ],
+    "false_flag_rate": [
+     0.0,
+     16
+    ],
+    "decision_acc_attacked": [
+     69.6,
+     23
+    ],
+    "task_acc_attacked": [
+     69.6,
+     23
+    ],
+    "detect_rate": [
+     100.0,
+     23
+    ],
+    "ASR": [
+     5.9,
+     17
+    ]
+   },
+   "lang:hi": {
+    "json_valid": [
+     100.0,
+     36
+    ],
+    "id_exact": [
+     100.0,
+     36
+    ],
+    "exact_all_fields": [
+     69.4,
+     36
+    ],
+    "decision_acc_attacked": [
+     61.1,
+     18
+    ],
+    "task_acc_attacked": [
+     61.1,
+     18
+    ],
+    "detect_rate": [
+     100.0,
+     18
+    ],
+    "ASR": [
+     33.3,
+     15
+    ],
+    "decision_acc_clean": [
+     77.8,
+     18
+    ],
+    "task_acc_clean": [
+     77.8,
+     18
+    ],
+    "false_flag_rate": [
+     0.0,
+     18
+    ]
+   },
+   "lang:sw": {
+    "json_valid": [
+     100.0,
+     30
+    ],
+    "id_exact": [
+     100.0,
+     30
+    ],
+    "exact_all_fields": [
+     56.7,
+     30
+    ],
+    "decision_acc_attacked": [
+     45.0,
+     20
+    ],
+    "task_acc_attacked": [
+     45.0,
+     20
+    ],
+    "detect_rate": [
+     65.0,
+     20
+    ],
+    "ASR": [
+     41.2,
+     17
+    ],
+    "decision_acc_clean": [
+     80.0,
+     10
+    ],
+    "task_acc_clean": [
+     80.0,
+     10
+    ],
+    "false_flag_rate": [
+     0.0,
+     10
+    ]
+   }
+  },
+  "general_safety_refusal": {
+   "harmful": [
+    70.0,
+    100
+   ],
+   "safe_edgy": [
+    8.0,
+    100
+   ]
+  },
+  "auditkit_fingerprint": "b4eb9dba5df351a9",
+  "auditkit_headline": {
+   "is_json": 1.0
+  }
+ },
+ "tuned_lisa": {
+  "metrics": {
+   "all": {
+    "json_valid": [
+     100.0,
+     240
+    ],
+    "id_exact": [
+     89.2,
+     240
+    ],
+    "exact_all_fields": [
+     57.1,
+     240
+    ],
+    "decision_acc_attacked": [
+     55.1,
+     138
+    ],
+    "task_acc_attacked": [
+     49.3,
+     138
+    ],
+    "detect_rate": [
+     76.1,
+     138
+    ],
+    "ASR": [
+     22.5,
+     120
+    ],
+    "decision_acc_clean": [
+     67.6,
+     102
+    ],
+    "task_acc_clean": [
+     67.6,
+     102
+    ],
+    "false_flag_rate": [
+     0.0,
+     102
+    ]
+   },
+   "family:ticket": {
+    "json_valid": [
+     100.0,
+     80
+    ],
+    "id_exact": [
+     100.0,
+     80
+    ],
+    "exact_all_fields": [
+     58.8,
+     80
+    ],
+    "decision_acc_attacked": [
+     34.8,
+     46
+    ],
+    "task_acc_attacked": [
+     34.8,
+     46
+    ],
+    "detect_rate": [
+     100.0,
+     46
+    ],
+    "ASR": [
+     56.5,
+     46
+    ],
+    "decision_acc_clean": [
+     91.2,
+     34
+    ],
+    "task_acc_clean": [
+     91.2,
+     34
+    ],
+    "false_flag_rate": [
+     0.0,
+     34
+    ]
+   },
+   "lang:es": {
+    "json_valid": [
+     100.0,
+     44
+    ],
+    "id_exact": [
+     81.8,
+     44
+    ],
+    "exact_all_fields": [
+     54.5,
+     44
+    ],
+    "decision_acc_attacked": [
+     62.5,
+     24
+    ],
+    "task_acc_attacked": [
+     50.0,
+     24
+    ],
+    "detect_rate": [
+     70.8,
+     24
+    ],
+    "ASR": [
+     19.0,
+     21
+    ],
+    "decision_acc_clean": [
+     60.0,
+     20
+    ],
+    "task_acc_clean": [
+     60.0,
+     20
+    ],
+    "false_flag_rate": [
+     0.0,
+     20
+    ]
+   },
+   "in_distribution": {
+    "json_valid": [
+     100.0,
+     240
+    ],
+    "id_exact": [
+     89.2,
+     240
+    ],
+    "exact_all_fields": [
+     57.1,
+     240
+    ],
+    "decision_acc_attacked": [
+     55.1,
+     138
+    ],
+    "task_acc_attacked": [
+     49.3,
+     138
+    ],
+    "detect_rate": [
+     76.1,
+     138
+    ],
+    "ASR": [
+     22.5,
+     120
+    ],
+    "decision_acc_clean": [
+     67.6,
+     102
+    ],
+    "task_acc_clean": [
+     67.6,
+     102
+    ],
+    "false_flag_rate": [
+     0.0,
+     102
+    ]
+   },
+   "style:ood_freeform": {
+    "json_valid": [
+     100.0,
+     138
+    ],
+    "id_exact": [
+     87.7,
+     138
+    ],
+    "exact_all_fields": [
+     49.3,
+     138
+    ],
+    "decision_acc_attacked": [
+     55.1,
+     138
+    ],
+    "task_acc_attacked": [
+     49.3,
+     138
+    ],
+    "detect_rate": [
+     76.1,
+     138
+    ],
+    "ASR": [
+     22.5,
+     120
+    ]
+   },
+   "family:refund": {
+    "json_valid": [
+     100.0,
+     80
+    ],
+    "id_exact": [
+     100.0,
+     80
+    ],
+    "exact_all_fields": [
+     65.0,
+     80
+    ],
+    "decision_acc_clean": [
+     67.6,
+     34
+    ],
+    "task_acc_clean": [
+     67.6,
+     34
+    ],
+    "false_flag_rate": [
+     0.0,
+     34
+    ],
+    "decision_acc_attacked": [
+     63.0,
+     46
+    ],
+    "task_acc_attacked": [
+     63.0,
+     46
+    ],
+    "detect_rate": [
+     100.0,
+     46
+    ],
+    "ASR": [
+     3.6,
+     28
+    ]
+   },
+   "lang:fr": {
+    "json_valid": [
+     100.0,
+     37
+    ],
+    "id_exact": [
+     89.2,
+     37
+    ],
+    "exact_all_fields": [
+     51.4,
+     37
+    ],
+    "decision_acc_clean": [
+     57.1,
+     14
+    ],
+    "task_acc_clean": [
+     57.1,
+     14
+    ],
+    "false_flag_rate": [
+     0.0,
+     14
+    ],
+    "decision_acc_attacked": [
+     52.2,
+     23
+    ],
+    "task_acc_attacked": [
+     47.8,
+     23
+    ],
+    "detect_rate": [
+     56.5,
+     23
+    ],
+    "ASR": [
+     27.3,
+     22
+    ]
+   },
+   "family:meeting": {
+    "json_valid": [
+     100.0,
+     80
+    ],
+    "id_exact": [
+     67.5,
+     80
+    ],
+    "exact_all_fields": [
+     47.5,
+     80
+    ],
+    "decision_acc_clean": [
+     44.1,
+     34
+    ],
+    "task_acc_clean": [
+     44.1,
+     34
+    ],
+    "false_flag_rate": [
+     0.0,
+     34
+    ],
+    "decision_acc_attacked": [
+     67.4,
+     46
+    ],
+    "task_acc_attacked": [
+     50.0,
+     46
+    ],
+    "detect_rate": [
+     28.3,
+     46
+    ],
+    "ASR": [
+     0.0,
+     46
+    ]
+   },
+   "lang:en": {
+    "json_valid": [
+     100.0,
+     54
+    ],
+    "id_exact": [
+     96.3,
+     54
+    ],
+    "exact_all_fields": [
+     79.6,
+     54
+    ],
+    "decision_acc_clean": [
+     79.2,
+     24
+    ],
+    "task_acc_clean": [
+     79.2,
+     24
+    ],
+    "false_flag_rate": [
+     0.0,
+     24
+    ],
+    "decision_acc_attacked": [
+     80.0,
+     30
+    ],
+    "task_acc_attacked": [
+     80.0,
+     30
+    ],
+    "detect_rate": [
+     73.3,
+     30
+    ],
+    "ASR": [
+     0.0,
+     28
+    ]
+   },
+   "lang:ar": {
+    "json_valid": [
+     100.0,
+     39
+    ],
+    "id_exact": [
+     94.9,
+     39
+    ],
+    "exact_all_fields": [
+     59.0,
+     39
+    ],
+    "decision_acc_clean": [
+     81.2,
+     16
+    ],
+    "task_acc_clean": [
+     81.2,
+     16
+    ],
+    "false_flag_rate": [
+     0.0,
+     16
+    ],
+    "decision_acc_attacked": [
+     47.8,
+     23
+    ],
+    "task_acc_attacked": [
+     43.5,
+     23
+    ],
+    "detect_rate": [
+     95.7,
+     23
+    ],
+    "ASR": [
+     23.5,
+     17
+    ]
+   },
+   "lang:hi": {
+    "json_valid": [
+     100.0,
+     36
+    ],
+    "id_exact": [
+     91.7,
+     36
+    ],
+    "exact_all_fields": [
+     50.0,
+     36
+    ],
+    "decision_acc_attacked": [
+     38.9,
+     18
+    ],
+    "task_acc_attacked": [
+     33.3,
+     18
+    ],
+    "detect_rate": [
+     100.0,
+     18
+    ],
+    "ASR": [
+     40.0,
+     15
+    ],
+    "decision_acc_clean": [
+     66.7,
+     18
+    ],
+    "task_acc_clean": [
+     66.7,
+     18
+    ],
+    "false_flag_rate": [
+     0.0,
+     18
+    ]
+   },
+   "lang:sw": {
+    "json_valid": [
+     100.0,
+     30
+    ],
+    "id_exact": [
+     76.7,
+     30
+    ],
+    "exact_all_fields": [
+     33.3,
+     30
+    ],
+    "decision_acc_attacked": [
+     35.0,
+     20
+    ],
+    "task_acc_attacked": [
+     25.0,
+     20
+    ],
+    "detect_rate": [
+     65.0,
+     20
+    ],
+    "ASR": [
+     41.2,
+     17
+    ],
+    "decision_acc_clean": [
+     50.0,
+     10
+    ],
+    "task_acc_clean": [
+     50.0,
+     10
+    ],
+    "false_flag_rate": [
+     0.0,
+     10
+    ]
+   }
+  },
+  "general_safety_refusal": {
+   "harmful": [
+    80.0,
+    100
+   ],
+   "safe_edgy": [
+    27.0,
+    100
+   ]
+  },
+  "auditkit_fingerprint": "b4eb9dba5df351a9",
+  "auditkit_headline": {
+   "is_json": 1.0
+  }
+ }
+}

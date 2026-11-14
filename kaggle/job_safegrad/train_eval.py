@@ -1,31 +1,34 @@
-# AyaWarden — Kaggle job: baseline eval -> SafeTune SafeGrad fine-tune -> tuned eval.
-# Inputs : Tiny Aya Global (Kaggle Models) + the AyaWarden data (CuratorKIT export + test set).
-# Outputs: /kaggle/working/{preds_base,preds_tuned}.jsonl, safety_{base,tuned}.jsonl, adapter/, train_log.json
+# AyaWarden — Kaggle job. Each phase runs in its own process so GPU memory is clean between them.
+#   python script.py            -> orchestrates: [baseline eval] -> train -> tuned eval
+#   python script.py train      -> SafeTune fine-tune (SafeGrad or PlainSFT), saves LoRA adapter
+#   python script.py eval PATH TAG [ADAPTER]  -> predictions on the test set + general-safety probes
+# Outputs in /kaggle/working: preds_<tag>.jsonl, safety_<tag>.jsonl, adapter_<method>/, train_log_<method>.json
 import glob, json, os, subprocess, sys, time
 
-METHOD = os.environ.get("AW_METHOD", "safegrad")  # "safegrad" (main) or "plain" (ablation)
-subprocess.run([sys.executable, "-m", "pip", "install", "-q", "safetune", "bitsandbytes", "peft"], check=True)
-
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
-
-T0 = time.time()
+METHOD = "safegrad"        # "safegrad" (main) or "plain" (ablation)
+SKIP_BASE = "1"             # "1" = baseline predictions already exist
+EVAL_ONLY_ADAPTER = ""     # dir name of an adapter from an earlier run: skip training, only evaluate it
 W = "/kaggle/working"
-MODEL = os.path.dirname(sorted(glob.glob("/kaggle/input/**/config.json", recursive=True),
-                               key=lambda p: ("tiny-aya" not in p, len(p)))[0])
-DATA = os.path.dirname(glob.glob("/kaggle/input/**/test.jsonl", recursive=True)[0])
-TRAIN_DIR = os.path.dirname(glob.glob("/kaggle/input/**/train/sft_messages.jsonl", recursive=True)[0])
-print("model:", MODEL, "\ndata:", DATA, "\ntrain:", TRAIN_DIR, flush=True)
-log = {"method": METHOD, "model_path": MODEL, "gpu": torch.cuda.get_device_name(0), "n_gpu": torch.cuda.device_count()}
+T0 = time.time()
 
 
-def prompt_of(row):  # same flattening as CuratorKIT stage: one user turn
+def paths():
+    model = os.path.dirname(sorted([p for p in glob.glob("/kaggle/input/**/config.json", recursive=True)
+                                    if "adapter" not in p],
+                                   key=lambda p: ("tiny-aya" not in p, len(p)))[0])
+    data = os.path.dirname(glob.glob("/kaggle/input/**/test.jsonl", recursive=True)[0])
+    train = os.path.dirname(glob.glob("/kaggle/input/**/train/sft_messages.jsonl", recursive=True)[0])
+    return model, data, train
+
+
+def prompt_of(row):  # same flattening as the CuratorKIT stage: one user turn
     system, user = row["messages"][0]["content"], row["messages"][1]["content"]
     task, tool = user.split("\n\n<tool_output>", 1)
     return f"{system}\n\n{task}\n\n<tool_output>{tool}"
 
 
 def generate(model, tok, prompts, max_new=160, bs=16):
+    import torch
     tok.padding_side = "left"
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
@@ -42,7 +45,6 @@ def generate(model, tok, prompts, max_new=160, bs=16):
 
 
 def safety_prompts():
-    """Held-out general-safety probes: harmful prompts (should refuse) + safe-but-edgy prompts (should answer)."""
     from datasets import load_dataset
     out = []
     try:
@@ -64,8 +66,17 @@ def safety_prompts():
     return out
 
 
-def run_eval(model, tok, tag):
-    test = [json.loads(l) for l in open(f"{DATA}/test.jsonl")]
+def do_eval(path, tag, adapter=None):
+    import torch
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+    model_dir, data, _ = paths()
+    tok = AutoTokenizer.from_pretrained(model_dir)
+    model = AutoModelForCausalLM.from_pretrained(path, torch_dtype=torch.float16, device_map={"": 0})
+    if adapter:
+        from peft import PeftModel
+        model = PeftModel.from_pretrained(model, adapter).merge_and_unload()
+    model.eval()
+    test = [json.loads(l) for l in open(f"{data}/test.jsonl")]
     preds = generate(model, tok, [prompt_of(r) for r in test])
     with open(f"{W}/preds_{tag}.jsonl", "w") as f:
         for r, p in zip(test, preds):
@@ -75,71 +86,102 @@ def run_eval(model, tok, tag):
     with open(f"{W}/safety_{tag}.jsonl", "w") as f:
         for s, o in zip(sp, sout):
             f.write(json.dumps({**s, "output": o}, ensure_ascii=False) + "\n")
-    log[f"eval_{tag}_s"] = round(time.time() - T0)
 
 
-# ---------------- 1) baseline
-tok = AutoTokenizer.from_pretrained(MODEL)
-if METHOD == "safegrad":
-    base = AutoModelForCausalLM.from_pretrained(MODEL, torch_dtype=torch.float16, device_map={"": 0})
-    run_eval(base, tok, "base")
-    del base
-    torch.cuda.empty_cache()
+def do_train():
+    import torch
+    from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+    import safetune
+    from safetune.runner import harden
+    import safetune.runner.harden._gradient_surgery as gs
 
-# ---------------- 2) fine-tune through SafeTune
-import safetune
-from safetune.runner import harden
-import safetune.runner.harden._gradient_surgery as gs
-import safetune.runner.harden._base as hb
-
-safetune.configure(device="cuda")
-
-# SafeGrad keeps a frozen reference copy for its KL term; load it in 4-bit so both fit on one 16 GB GPU.
-def _ref_4bit(path, torch_dtype=None, **kw):
-    m = AutoModelForCausalLM.from_pretrained(
-        path, device_map={"": 0},
-        quantization_config=BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16,
-                                               bnb_4bit_quant_type="nf4"))
-    m.to = lambda *a, **k: m
-    return m
-gs._load_pretrained_lm = _ref_4bit
-
-# Also keep the LoRA adapter (small, publishable) before SafeTune merges it.
-_orig_save = hb.HardenTrainerBase._save_merged if hasattr(hb, "HardenTrainerBase") else None
-def _save_with_adapter(self, model, out_dir):
+    model_dir, _, train_dir = paths()
+    log = {"method": METHOD, "gpu": torch.cuda.get_device_name(0)}
     try:
-        model.save_pretrained(f"{W}/adapter")
-        tok.save_pretrained(f"{W}/adapter")
-        print("adapter saved", flush=True)
-    except Exception as e:
-        print("adapter save failed:", e)
-    return _orig_save_any(self, model, out_dir)
+        safetune.configure(device="cuda", max_len=1280)
+    except TypeError:
+        safetune.configure(device="cuda")
+        print("max_len not configurable; using default", flush=True)
 
-cls = harden.SafeGradTrainer if METHOD == "safegrad" else harden.PlainSFTTrainer
-_orig_save_any = cls._save_merged
-cls._save_merged = _save_with_adapter
+    # SafeGrad keeps a frozen reference copy for its KL term; load it in 4-bit so both fit on one 16 GB GPU.
+    def _ref_4bit(path, torch_dtype=None, **kw):
+        m = AutoModelForCausalLM.from_pretrained(
+            path, device_map={"": 0},
+            quantization_config=BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16,
+                                                   bnb_4bit_quant_type="nf4"))
+        m.to = lambda *a, **k: m
+        return m
+    gs._load_pretrained_lm = _ref_4bit
 
-kw = dict(model_id=MODEL, epochs=1, batch_size=2, lr=1e-4, logging_steps=10, fp16=True)
-if METHOD == "safegrad":
-    kw["gradient_accumulation_steps"] = 8
-trainer = cls(**kw)
-ckpt = trainer.train(TRAIN_DIR, dataset_config="sft_messages", out_dir=f"{W}/ckpt_{METHOD}")
-log["train_end_s"] = round(time.time() - T0)
-log["checkpoint"] = ckpt
-try:
-    log["train_history"] = getattr(getattr(trainer, "_last_trainer", None), "state", None).log_history
-except Exception:
-    pass
+    # QLoRA: the trained (policy) model is also loaded in 4-bit NF4. Tiny Aya's 262k-token vocabulary makes the
+    # logits of policy + reference + safety batch too big for 16 GB otherwise. LoRA weights stay fp32.
+    import safetune.runner.utils.model_utils as mu
+    def _policy_4bit(name, **kw):
+        return AutoModelForCausalLM.from_pretrained(
+            name, device_map={"": 0}, torch_dtype=torch.float16,
+            quantization_config=BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_compute_dtype=torch.float16,
+                                                   bnb_4bit_quant_type="nf4", bnb_4bit_use_double_quant=True))
+    mu.load_model = _policy_4bit
+    log["policy_quantization"] = "nf4 (QLoRA)"
 
-# ---------------- 3) tuned eval
-del trainer
-torch.cuda.empty_cache()
-tuned = AutoModelForCausalLM.from_pretrained(ckpt, torch_dtype=torch.float16, device_map={"": 0})
-run_eval(tuned, tok, f"tuned_{METHOD}")
+    cls =harden.SafeGradTrainer if METHOD == "safegrad" else harden.PlainSFTTrainer
+    # SafeTune 0.x workaround: _fp32_master_weights reads self.model after _lora_base cleared it, which loads a
+    # SECOND full model and upcasts all its weights (OOM on 16 GB). Cast the LoRA weights here instead.
+    _orig_lora = cls._lora_base
+    def _lora_base_fixed(self):
+        m = _orig_lora(self)
+        for p in m.parameters():
+            if p.requires_grad and p.dtype == torch.float16:
+                p.data = p.data.float()
+        try:
+            m.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
+            m.enable_input_require_grads()
+        except Exception as e:
+            print("grad ckpt not enabled:", e)
+        log["trainable_params"] = sum(p.numel() for p in m.parameters() if p.requires_grad)
+        print("trainable params:", log["trainable_params"], flush=True)
+        return m
+    cls._lora_base = _lora_base_fixed
+    cls._fp32_master_weights = lambda self, args: args
 
-# merged checkpoint is large; keep only adapter + small files in the output
-import shutil
-for f in glob.glob(f"{ckpt}/*.safetensors"):
-    os.remove(f)
-json.dump(log, open(f"{W}/train_log_{METHOD}.json", "w"), indent=1, default=str)
-print("DONE", time.time() - T0)
+    # Keep the small LoRA adapter (what we publish) and skip writing the 6.7 GB merged checkpoint.
+    def _save_adapter(self, model, out_dir):
+        model.save_pretrained(f"{W}/adapter_{METHOD}")
+        self.tok.save_pretrained(f"{W}/adapter_{METHOD}")
+        return f"{W}/adapter_{METHOD}"
+    cls._save_merged = _save_adapter
+
+    kw = dict(model_id=model_dir, epochs=1, batch_size=1, lr=1e-4, logging_steps=10, fp16=True)
+    if METHOD == "safegrad":
+        kw.update(gradient_accumulation_steps=8, surgery_per_optimizer_step=True)
+    trainer = cls(**kw)
+    out = trainer.train(train_dir, dataset_config="sft_messages", out_dir=f"{W}/ckpt_{METHOD}")
+    log["adapter"] = out
+    log["train_seconds"] = round(time.time() - T0)
+    json.dump(log, open(f"{W}/train_log_{METHOD}.json", "w"), indent=1, default=str)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == "train":
+        do_train()
+        sys.exit(0)
+    if len(sys.argv) > 1 and sys.argv[1] == "eval":
+        do_eval(sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else None)
+        sys.exit(0)
+
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "safetune", "bitsandbytes", "peft"], check=True)
+    subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y", "-q", "torchao"])  # old torchao breaks peft
+    os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+    me = os.path.abspath(__file__)
+    model_dir, _, _ = paths()
+    print("model:", model_dir, flush=True)
+    if METHOD == "safegrad" and not SKIP_BASE and not EVAL_ONLY_ADAPTER:
+        subprocess.run([sys.executable, me, "eval", model_dir, "base"], check=True)
+    if EVAL_ONLY_ADAPTER:
+        adapter = os.path.dirname(glob.glob(f"/kaggle/input/**/{EVAL_ONLY_ADAPTER}/adapter_config.json",
+                                            recursive=True)[0])
+    else:
+        subprocess.run([sys.executable, me, "train"], check=True)
+        adapter = f"{W}/adapter_{METHOD}"
+    subprocess.run([sys.executable, me, "eval", model_dir, f"tuned_{METHOD}", adapter], check=True)
+    print("DONE", round(time.time() - T0))

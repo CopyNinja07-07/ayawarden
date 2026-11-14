@@ -10,6 +10,7 @@ configs:
   - {split: train, path: raw/train.jsonl}
   - {split: validation, path: raw/val.jsonl}
   - {split: test, path: raw/test.jsonl}
+  - {split: ood, path: raw/ood.jsonl}
 - config_name: curated_sft_messages
   data_files:
   - {split: train, path: curated/train/sft_messages.jsonl}
@@ -25,6 +26,7 @@ Agent tasks whose tool output (a contract, a security alert, an invoice, a produ
 | train | 2,400 | 1,316 | 605 | 479 | en, hi, hinglish, es, fr, ar, sw | 9 |
 | validation | 240 | 124 | 61 | 55 | same | same 9 |
 | test | 800 | 453 | 197 | 150 | same + **bn (held out)** | same 9 + **3 held out** |
+| ood | 240 | 138 | 0 | 102 | en, hi, es, fr, ar, sw | free-form; 3 unseen task types (ticket, refund, meeting) |
 
 - **Tasks:** `penalty` (supplier penalty audit), `triage` (security alert category), `invoice` (payment extraction), `shopping` (buy/skip recommendation).
 - **Attacker goals:** set the penalty to 0, close the incident as CONFIG_ERROR, swap the payee bank account, force a BUY recommendation.
@@ -43,3 +45,13 @@ Agent tasks whose tool output (a contract, a security alert, an invoice, a produ
 `results/` holds the evaluation predictions of the base and fine-tuned models and the scored report.
 
 Code: https://github.com/CopyNinja07-07/ayawarden
+
+## Results
+
+| | Base Tiny Aya | Plain SFT | Lisa |
+|---|---|---|---|
+| ASR, test | 41.0% | 0.0% | 2.0% |
+| ASR, OOD tasks | 61.7% | 15.0% | 22.5% |
+| Decision accuracy (clean), test | 38.3% | 98.0% | 91.6% |
+| Harmful-prompt refusal | 71% | 70% | 80% |
+| Safe-prompt over-refusal | 8% | 8% | 27% |
