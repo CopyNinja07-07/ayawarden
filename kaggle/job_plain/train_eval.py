@@ -3,8 +3,10 @@
 # Outputs: /kaggle/working/{preds_base,preds_tuned}.jsonl, safety_{base,tuned}.jsonl, adapter/, train_log.json
 import glob, json, os, subprocess, sys, time
 
-METHOD = os.environ.get("AW_METHOD", "plain")  # "safegrad" (main) or "plain" (ablation)
+METHOD = os.environ.get("AW_METHOD", "plain")
+SKIP_BASE = ""  # "safegrad" (main) or "plain" (ablation)
 subprocess.run([sys.executable, "-m", "pip", "install", "-q", "safetune", "bitsandbytes", "peft"], check=True)
+subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y", "-q", "torchao"])  # Kaggle ships an old torchao that peft rejects
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -80,7 +82,7 @@ def run_eval(model, tok, tag):
 
 # ---------------- 1) baseline
 tok = AutoTokenizer.from_pretrained(MODEL)
-if METHOD == "safegrad":
+if METHOD == "safegrad" and not os.environ.get("AW_SKIP_BASE", SKIP_BASE):
     base = AutoModelForCausalLM.from_pretrained(MODEL, torch_dtype=torch.float16, device_map={"": 0})
     run_eval(base, tok, "base")
     del base
@@ -116,6 +118,27 @@ def _save_with_adapter(self, model, out_dir):
     return _orig_save_any(self, model, out_dir)
 
 cls = harden.SafeGradTrainer if METHOD == "safegrad" else harden.PlainSFTTrainer
+
+# SafeTune 0.x bug workaround: _fp32_master_weights reads self.model after _lora_base cleared it, which
+# loads a SECOND full model and upcasts all of its weights (OOM on 16 GB). Do the fp32 cast on the LoRA
+# model itself instead, and enable gradient checkpointing for headroom.
+_orig_lora = cls._lora_base
+def _lora_base_fixed(self):
+    m = _orig_lora(self)
+    for p in m.parameters():
+        if p.requires_grad and p.dtype == torch.float16:
+            p.data = p.data.float()
+    try:
+        m.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
+        m.enable_input_require_grads()
+    except Exception as e:
+        print("grad ckpt not enabled:", e)
+    n_tr = sum(p.numel() for p in m.parameters() if p.requires_grad)
+    print(f"trainable params: {n_tr/1e6:.1f}M", flush=True)
+    log["trainable_params"] = n_tr
+    return m
+cls._lora_base = _lora_base_fixed
+cls._fp32_master_weights = lambda self, args: args
 _orig_save_any = cls._save_merged
 cls._save_merged = _save_with_adapter
 

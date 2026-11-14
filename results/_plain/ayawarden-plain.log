@@ -1,0 +1,38 @@
+[{"stream_name":"stdout","time":60.243626425,"data":"model: /kaggle/input/models/cohere-labs/tiny-aya/transformers/global/1 \n"}
+,{"stream_name":"stdout","time":60.243699405,"data":"data: /kaggle/input/datasets/copyninja02/ayawarden-data \n"}
+,{"stream_name":"stdout","time":60.243705349,"data":"train: /kaggle/input/datasets/copyninja02/ayawarden-data/curated/train\n"}
+,{"stream_name":"stderr","time":90.325629964,"data":"WARNING: All log messages before absl::InitializeLog() is called are written to STDERR\n"}
+,{"stream_name":"stderr","time":90.325662226,"data":"I0000 00:00:1794685140.844084       7 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.\n"}
+,{"stream_name":"stderr","time":95.022302839,"data":"\rGenerating train split: 0 examples [00:00, ? examples/s]\rGenerating train split: 2400 examples [00:00, 70198.54 examples/s]\n"}
+,{"stream_name":"stderr","time":116.979496456,"data":"\rLoading weights:   0%|          | 0/290 [00:00\u003c?, ?it/s]\rLoading weights:   0%|          | 1/290 [00:06\u003c33:06,  6.87s/it]\rLoading weights:  51%|█████     | 147/290 [00:07\u003c00:04, 28.72it/s]\rLoading weights:  61%|██████    | 176/290 [00:07\u003c00:03, 30.45it/s]\rLoading weights:  67%|██████▋   | 194/290 [00:08\u003c00:03, 31.00it/s]\rLoading weights:  71%|███████   | 206/290 [00:08\u003c00:02, 30.23it/s]\rLoading weights:  74%|███████▍  | 215/290 [00:09\u003c00:02, 30.56it/s]\rLoading weights:  77%|███████▋  | 222/290 [00:09\u003c00:02, 30.00it/s]\rLoading weights:  79%|███████▊  | 228/290 [00:09\u003c00:02, 30.27it/s]\rLoading weights:  81%|████████  | 235/290 [00:09\u003c00:01, 29.86it/s]\rLoading weights:  84%|████████▍ | 243/290 [00:10\u003c00:01, 30.80it/s]\rLoading weights:  87%|████████▋ | 251/290 [00:10\u003c00:01, 31.76it/s]\rLoading weights:  88%|████████▊ | 255/290 [00:10\u003c00:01, 32.54it/s]\rLoading weights:  89%|████████▉ | 259/290 [00:10\u003c00:01, 29.55it/s]\rLoading weights:  92%|█████████▏| 267/290 [00:10\u003c00:00, 30.84it/s]\rLoading weights:  95%|█████████▍| 275/290 [00:11\u003c00:00, 32.31it/s]\rLoading weights:  96%|█████████▌| 279/290 [00:11\u003c00:00, 33.40it/s]\rLoading weights:  98%|█████████▊| 283/290 [00:11\u003c00:00, 29.09it/s]\rLoading weights: 100%|██████████| 290/290 [00:11\u003c00:00, 25.29it/s]\n"}
+,{"stream_name":"stderr","time":121.852462733,"data":"\rLoading weights:   0%|          | 0/290 [00:00\u003c?, ?it/s]\rLoading weights:   0%|          | 1/290 [00:01\u003c07:08,  1.48s/it]\rLoading weights:  26%|██▌       | 75/290 [00:01\u003c00:03, 63.34it/s]\rLoading weights:  37%|███▋      | 106/290 [00:01\u003c00:02, 76.00it/s]\rLoading weights:  44%|████▍     | 128/290 [00:02\u003c00:02, 80.27it/s]\rLoading weights:  50%|█████     | 145/290 [00:02\u003c00:01, 84.14it/s]\rLoading weights:  55%|█████▌    | 160/290 [00:02\u003c00:01, 82.54it/s]\rLoading weights:  60%|█████▉    | 173/290 [00:02\u003c00:01, 79.72it/s]\rLoading weights:  64%|██████▍   | 187/290 [00:02\u003c00:01, 84.35it/s]\rLoading weights:  68%|██████▊   | 198/290 [00:02\u003c00:01, 79.38it/s]\rLoading weights:  73%|███████▎  | 211/290 [00:03\u003c00:00, 85.03it/s]\rLoading weights:  76%|███████▌  | 221/290 [00:03\u003c00:00, 79.38it/s]\rLoading weights:  81%|████████  | 235/290 [00:03\u003c00:00, 88.41it/s]\rLoading weights:  84%|████████▍ | 245/290 [00:03\u003c00:00, 81.47it/s]\rLoading weights:  89%|████████▉ | 259/290 [00:03\u003c00:00, 91.74it/s]\rLoading weights:  93%|█████████▎| 269/290 [00:03\u003c00:00, 93.04it/s]\rLoading weights:  96%|█████████▌| 279/290 [00:03\u003c00:00, 90.57it/s]\rLoading weights: 100%|██████████| 290/290 [00:03\u003c00:00, 74.13it/s]\n"}
+,{"stream_name":"stderr","time":122.075762734,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":122.076729411,"data":"  File \"/kaggle/src/script.py\", line 128, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":122.076753355,"data":"    ckpt = trainer.train(TRAIN_DIR, dataset_config=\"sft_messages\", out_dir=f\"{W}/ckpt_{METHOD}\")\n"}
+,{"stream_name":"stderr","time":122.076767615,"data":"  File \"/usr/local/lib/python3.13/dist-packages/safetune/runner/harden/_base.py\", line 50, in wrapper\n"}
+,{"stream_name":"stderr","time":122.076772419,"data":"    return train(self, train_dataset, *args, **kwargs)\n"}
+,{"stream_name":"stderr","time":122.076873378,"data":"  File \"/usr/local/lib/python3.13/dist-packages/safetune/runner/harden/_gradient_surgery.py\", line 31, in train\n"}
+,{"stream_name":"stderr","time":122.076883065,"data":"    args=self._training_args(out_dir),\n"}
+,{"stream_name":"stderr","time":122.076886618,"data":"         ~~~~~~~~~~~~~~~~~~~^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":122.076919427,"data":"  File \"/usr/local/lib/python3.13/dist-packages/safetune/runner/harden/_base.py\", line 354, in _training_args\n"}
+,{"stream_name":"stderr","time":122.076924717,"data":"    return self._fp32_master_weights(_make_training_args(\n"}
+,{"stream_name":"stderr","time":122.076928954,"data":"           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":122.076932516,"data":"        out_dir, self.epochs, self.batch_size, self.lr,\n"}
+,{"stream_name":"stderr","time":122.076935904,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":122.076955832,"data":"        self.bf16, self.optimizer, self.logging_steps,\n"}
+,{"stream_name":"stderr","time":122.076959477,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":122.076969168,"data":"        fp16=self.fp16, wandb=self.wandb,\n"}
+,{"stream_name":"stderr","time":122.076972711,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":122.076990283,"data":"    ))\n"}
+,{"stream_name":"stderr","time":122.076994231,"data":"    ^^\n"}
+,{"stream_name":"stderr","time":122.077048665,"data":"  File \"/usr/local/lib/python3.13/dist-packages/safetune/runner/harden/_base.py\", line 349, in _fp32_master_weights\n"}
+,{"stream_name":"stderr","time":122.077065465,"data":"    p.data = p.data.float()\n"}
+,{"stream_name":"stderr","time":122.077069923,"data":"             ~~~~~~~~~~~~^^\n"}
+,{"stream_name":"stderr","time":122.077125058,"data":"torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 14.56 GiB of which 1.83 GiB is free. Including non-PyTorch memory, this process has 12.72 GiB memory in use. Of the allocated memory 12.59 GiB is allocated by PyTorch, and 20.40 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n"}
+,{"stream_name":"stderr","time":130.161074514,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":130.161109539,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":130.41302043,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":130.413065793,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":131.288429227,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":131.827072888,"data":"[NbConvertApp] Writing 312317 bytes to __results__.html\n"}
+]
