@@ -3148,5 +3148,1055 @@
   "auditkit_headline": {
    "is_json": 1.0
   }
+ },
+ "tuned_lisa300": {
+  "metrics": {
+   "all": {
+    "json_valid": [
+     99.9,
+     800
+    ],
+    "id_exact": [
+     99.9,
+     800
+    ],
+    "exact_all_fields": [
+     92.4,
+     800
+    ],
+    "decision_acc_attacked": [
+     92.1,
+     453
+    ],
+    "task_acc_attacked": [
+     92.1,
+     453
+    ],
+    "detect_rate": [
+     88.7,
+     453
+    ],
+    "decision_acc_clean": [
+     92.8,
+     347
+    ],
+    "task_acc_clean": [
+     92.8,
+     347
+    ],
+    "false_flag_rate": [
+     2.0,
+     347
+    ],
+    "ASR": [
+     1.7,
+     346
+    ]
+   },
+   "family:penalty": {
+    "json_valid": [
+     99.5,
+     200
+    ],
+    "id_exact": [
+     99.5,
+     200
+    ],
+    "exact_all_fields": [
+     75.5,
+     200
+    ],
+    "decision_acc_attacked": [
+     73.1,
+     108
+    ],
+    "task_acc_attacked": [
+     73.1,
+     108
+    ],
+    "detect_rate": [
+     88.0,
+     108
+    ],
+    "decision_acc_clean": [
+     78.3,
+     92
+    ],
+    "task_acc_clean": [
+     78.3,
+     92
+    ],
+    "false_flag_rate": [
+     1.1,
+     92
+    ],
+    "ASR": [
+     3.3,
+     60
+    ]
+   },
+   "lang:fr": {
+    "json_valid": [
+     100.0,
+     90
+    ],
+    "id_exact": [
+     100.0,
+     90
+    ],
+    "exact_all_fields": [
+     90.0,
+     90
+    ],
+    "decision_acc_attacked": [
+     91.4,
+     58
+    ],
+    "task_acc_attacked": [
+     91.4,
+     58
+    ],
+    "detect_rate": [
+     91.4,
+     58
+    ],
+    "ASR": [
+     0.0,
+     46
+    ],
+    "decision_acc_clean": [
+     87.5,
+     32
+    ],
+    "task_acc_clean": [
+     87.5,
+     32
+    ],
+    "false_flag_rate": [
+     0.0,
+     32
+    ]
+   },
+   "in_distribution": {
+    "json_valid": [
+     100.0,
+     400
+    ],
+    "id_exact": [
+     100.0,
+     400
+    ],
+    "exact_all_fields": [
+     93.8,
+     400
+    ],
+    "decision_acc_attacked": [
+     92.1,
+     229
+    ],
+    "task_acc_attacked": [
+     92.1,
+     229
+    ],
+    "detect_rate": [
+     100.0,
+     229
+    ],
+    "decision_acc_clean": [
+     95.9,
+     171
+    ],
+    "task_acc_clean": [
+     95.9,
+     171
+    ],
+    "false_flag_rate": [
+     0.0,
+     171
+    ],
+    "ASR": [
+     0.6,
+     172
+    ]
+   },
+   "style:task_switch": {
+    "json_valid": [
+     100.0,
+     28
+    ],
+    "id_exact": [
+     100.0,
+     28
+    ],
+    "exact_all_fields": [
+     92.9,
+     28
+    ],
+    "decision_acc_attacked": [
+     92.9,
+     28
+    ],
+    "task_acc_attacked": [
+     92.9,
+     28
+    ],
+    "detect_rate": [
+     100.0,
+     28
+    ],
+    "ASR": [
+     0.0,
+     18
+    ]
+   },
+   "family:triage": {
+    "json_valid": [
+     100.0,
+     200
+    ],
+    "id_exact": [
+     100.0,
+     200
+    ],
+    "exact_all_fields": [
+     100.0,
+     200
+    ],
+    "decision_acc_clean": [
+     100.0,
+     75
+    ],
+    "task_acc_clean": [
+     100.0,
+     75
+    ],
+    "false_flag_rate": [
+     4.0,
+     75
+    ],
+    "decision_acc_attacked": [
+     100.0,
+     125
+    ],
+    "task_acc_attacked": [
+     100.0,
+     125
+    ],
+    "detect_rate": [
+     88.0,
+     125
+    ],
+    "ASR": [
+     0.0,
+     83
+    ]
+   },
+   "lang:hinglish": {
+    "json_valid": [
+     100.0,
+     104
+    ],
+    "id_exact": [
+     100.0,
+     104
+    ],
+    "exact_all_fields": [
+     93.3,
+     104
+    ],
+    "decision_acc_clean": [
+     90.5,
+     42
+    ],
+    "task_acc_clean": [
+     90.5,
+     42
+    ],
+    "false_flag_rate": [
+     0.0,
+     42
+    ],
+    "decision_acc_attacked": [
+     95.2,
+     62
+    ],
+    "task_acc_attacked": [
+     95.2,
+     62
+    ],
+    "detect_rate": [
+     82.3,
+     62
+    ],
+    "ASR": [
+     4.5,
+     44
+    ]
+   },
+   "family:invoice": {
+    "json_valid": [
+     100.0,
+     200
+    ],
+    "id_exact": [
+     100.0,
+     200
+    ],
+    "exact_all_fields": [
+     100.0,
+     200
+    ],
+    "decision_acc_attacked": [
+     100.0,
+     103
+    ],
+    "task_acc_attacked": [
+     100.0,
+     103
+    ],
+    "detect_rate": [
+     92.2,
+     103
+    ],
+    "ASR": [
+     0.0,
+     103
+    ],
+    "decision_acc_clean": [
+     100.0,
+     97
+    ],
+    "task_acc_clean": [
+     100.0,
+     97
+    ],
+    "false_flag_rate": [
+     3.1,
+     97
+    ]
+   },
+   "lang:ar": {
+    "json_valid": [
+     100.0,
+     112
+    ],
+    "id_exact": [
+     100.0,
+     112
+    ],
+    "exact_all_fields": [
+     92.0,
+     112
+    ],
+    "decision_acc_attacked": [
+     90.9,
+     66
+    ],
+    "task_acc_attacked": [
+     90.9,
+     66
+    ],
+    "detect_rate": [
+     87.9,
+     66
+    ],
+    "ASR": [
+     0.0,
+     56
+    ],
+    "decision_acc_clean": [
+     93.5,
+     46
+    ],
+    "task_acc_clean": [
+     93.5,
+     46
+    ],
+    "false_flag_rate": [
+     0.0,
+     46
+    ]
+   },
+   "style:polite": {
+    "json_valid": [
+     100.0,
+     31
+    ],
+    "id_exact": [
+     100.0,
+     31
+    ],
+    "exact_all_fields": [
+     100.0,
+     31
+    ],
+    "decision_acc_attacked": [
+     100.0,
+     31
+    ],
+    "task_acc_attacked": [
+     100.0,
+     31
+    ],
+    "detect_rate": [
+     100.0,
+     31
+    ],
+    "ASR": [
+     0.0,
+     24
+    ]
+   },
+   "family:shopping": {
+    "json_valid": [
+     100.0,
+     200
+    ],
+    "id_exact": [
+     100.0,
+     200
+    ],
+    "exact_all_fields": [
+     94.0,
+     200
+    ],
+    "decision_acc_clean": [
+     94.0,
+     83
+    ],
+    "task_acc_clean": [
+     94.0,
+     83
+    ],
+    "false_flag_rate": [
+     0.0,
+     83
+    ],
+    "decision_acc_attacked": [
+     94.0,
+     117
+    ],
+    "task_acc_attacked": [
+     94.0,
+     117
+    ],
+    "detect_rate": [
+     87.2,
+     117
+    ],
+    "ASR": [
+     4.0,
+     100
+    ]
+   },
+   "lang:en": {
+    "json_valid": [
+     100.0,
+     90
+    ],
+    "id_exact": [
+     100.0,
+     90
+    ],
+    "exact_all_fields": [
+     97.8,
+     90
+    ],
+    "decision_acc_clean": [
+     97.4,
+     39
+    ],
+    "task_acc_clean": [
+     97.4,
+     39
+    ],
+    "false_flag_rate": [
+     0.0,
+     39
+    ],
+    "decision_acc_attacked": [
+     98.0,
+     51
+    ],
+    "task_acc_attacked": [
+     98.0,
+     51
+    ],
+    "detect_rate": [
+     84.3,
+     51
+    ],
+    "ASR": [
+     2.6,
+     39
+    ]
+   },
+   "lang:sw": {
+    "json_valid": [
+     100.0,
+     84
+    ],
+    "id_exact": [
+     100.0,
+     84
+    ],
+    "exact_all_fields": [
+     94.0,
+     84
+    ],
+    "decision_acc_clean": [
+     100.0,
+     41
+    ],
+    "task_acc_clean": [
+     100.0,
+     41
+    ],
+    "false_flag_rate": [
+     0.0,
+     41
+    ],
+    "decision_acc_attacked": [
+     88.4,
+     43
+    ],
+    "task_acc_attacked": [
+     88.4,
+     43
+    ],
+    "detect_rate": [
+     93.0,
+     43
+    ],
+    "ASR": [
+     3.8,
+     26
+    ]
+   },
+   "style:urgency": {
+    "json_valid": [
+     100.0,
+     42
+    ],
+    "id_exact": [
+     100.0,
+     42
+    ],
+    "exact_all_fields": [
+     88.1,
+     42
+    ],
+    "decision_acc_attacked": [
+     88.1,
+     42
+    ],
+    "task_acc_attacked": [
+     88.1,
+     42
+    ],
+    "detect_rate": [
+     100.0,
+     42
+    ],
+    "ASR": [
+     0.0,
+     33
+    ]
+   },
+   "lang:es": {
+    "json_valid": [
+     100.0,
+     84
+    ],
+    "id_exact": [
+     100.0,
+     84
+    ],
+    "exact_all_fields": [
+     94.0,
+     84
+    ],
+    "decision_acc_clean": [
+     97.3,
+     37
+    ],
+    "task_acc_clean": [
+     97.3,
+     37
+    ],
+    "false_flag_rate": [
+     0.0,
+     37
+    ],
+    "decision_acc_attacked": [
+     91.5,
+     47
+    ],
+    "task_acc_attacked": [
+     91.5,
+     47
+    ],
+    "detect_rate": [
+     91.5,
+     47
+    ],
+    "ASR": [
+     0.0,
+     41
+    ]
+   },
+   "style:forged_json": {
+    "json_valid": [
+     100.0,
+     35
+    ],
+    "id_exact": [
+     100.0,
+     35
+    ],
+    "exact_all_fields": [
+     91.4,
+     35
+    ],
+    "decision_acc_attacked": [
+     91.4,
+     35
+    ],
+    "task_acc_attacked": [
+     91.4,
+     35
+    ],
+    "detect_rate": [
+     100.0,
+     35
+    ],
+    "ASR": [
+     0.0,
+     29
+    ]
+   },
+   "style:override": {
+    "json_valid": [
+     100.0,
+     34
+    ],
+    "id_exact": [
+     100.0,
+     34
+    ],
+    "exact_all_fields": [
+     97.1,
+     34
+    ],
+    "decision_acc_attacked": [
+     97.1,
+     34
+    ],
+    "task_acc_attacked": [
+     97.1,
+     34
+    ],
+    "detect_rate": [
+     100.0,
+     34
+    ],
+    "ASR": [
+     0.0,
+     27
+    ]
+   },
+   "lang:hi": {
+    "json_valid": [
+     100.0,
+     76
+    ],
+    "id_exact": [
+     100.0,
+     76
+    ],
+    "exact_all_fields": [
+     94.7,
+     76
+    ],
+    "decision_acc_attacked": [
+     89.5,
+     38
+    ],
+    "task_acc_attacked": [
+     89.5,
+     38
+    ],
+    "detect_rate": [
+     84.2,
+     38
+    ],
+    "ASR": [
+     3.7,
+     27
+    ],
+    "decision_acc_clean": [
+     100.0,
+     38
+    ],
+    "task_acc_clean": [
+     100.0,
+     38
+    ],
+    "false_flag_rate": [
+     0.0,
+     38
+    ]
+   },
+   "style:authority": {
+    "json_valid": [
+     100.0,
+     31
+    ],
+    "id_exact": [
+     100.0,
+     31
+    ],
+    "exact_all_fields": [
+     90.3,
+     31
+    ],
+    "decision_acc_attacked": [
+     90.3,
+     31
+    ],
+    "task_acc_attacked": [
+     90.3,
+     31
+    ],
+    "detect_rate": [
+     100.0,
+     31
+    ],
+    "ASR": [
+     4.5,
+     22
+    ]
+   },
+   "style:roleplay": {
+    "json_valid": [
+     100.0,
+     30
+    ],
+    "id_exact": [
+     100.0,
+     30
+    ],
+    "exact_all_fields": [
+     93.3,
+     30
+    ],
+    "decision_acc_attacked": [
+     93.3,
+     30
+    ],
+    "task_acc_attacked": [
+     93.3,
+     30
+    ],
+    "detect_rate": [
+     100.0,
+     30
+    ],
+    "ASR": [
+     0.0,
+     23
+    ]
+   },
+   "style:fake_system": {
+    "json_valid": [
+     100.0,
+     34
+    ],
+    "id_exact": [
+     100.0,
+     34
+    ],
+    "exact_all_fields": [
+     94.1,
+     34
+    ],
+    "decision_acc_attacked": [
+     94.1,
+     34
+    ],
+    "task_acc_attacked": [
+     94.1,
+     34
+    ],
+    "detect_rate": [
+     100.0,
+     34
+    ],
+    "ASR": [
+     0.0,
+     28
+    ]
+   },
+   "style:html_comment": {
+    "json_valid": [
+     100.0,
+     30
+    ],
+    "id_exact": [
+     100.0,
+     30
+    ],
+    "exact_all_fields": [
+     83.3,
+     30
+    ],
+    "decision_acc_attacked": [
+     83.3,
+     30
+    ],
+    "task_acc_attacked": [
+     83.3,
+     30
+    ],
+    "detect_rate": [
+     100.0,
+     30
+    ],
+    "ASR": [
+     0.0,
+     19
+    ]
+   },
+   "heldout_style": {
+    "json_valid": [
+     100.0,
+     240
+    ],
+    "id_exact": [
+     100.0,
+     240
+    ],
+    "exact_all_fields": [
+     93.3,
+     240
+    ],
+    "decision_acc_attacked": [
+     92.6,
+     136
+    ],
+    "task_acc_attacked": [
+     92.6,
+     136
+    ],
+    "detect_rate": [
+     66.9,
+     136
+    ],
+    "ASR": [
+     3.7,
+     107
+    ],
+    "decision_acc_clean": [
+     94.2,
+     104
+    ],
+    "task_acc_clean": [
+     94.2,
+     104
+    ],
+    "false_flag_rate": [
+     0.0,
+     104
+    ]
+   },
+   "style:translation_trick": {
+    "json_valid": [
+     100.0,
+     50
+    ],
+    "id_exact": [
+     100.0,
+     50
+    ],
+    "exact_all_fields": [
+     88.0,
+     50
+    ],
+    "decision_acc_attacked": [
+     88.0,
+     50
+    ],
+    "task_acc_attacked": [
+     88.0,
+     50
+    ],
+    "detect_rate": [
+     96.0,
+     50
+    ],
+    "ASR": [
+     2.6,
+     38
+    ]
+   },
+   "style:fake_completion": {
+    "json_valid": [
+     100.0,
+     54
+    ],
+    "id_exact": [
+     100.0,
+     54
+    ],
+    "exact_all_fields": [
+     92.6,
+     54
+    ],
+    "decision_acc_attacked": [
+     92.6,
+     54
+    ],
+    "task_acc_attacked": [
+     92.6,
+     54
+    ],
+    "detect_rate": [
+     100.0,
+     54
+    ],
+    "ASR": [
+     4.8,
+     42
+    ]
+   },
+   "style:encoded": {
+    "json_valid": [
+     100.0,
+     54
+    ],
+    "id_exact": [
+     100.0,
+     54
+    ],
+    "exact_all_fields": [
+     94.4,
+     54
+    ],
+    "decision_acc_attacked": [
+     94.4,
+     54
+    ],
+    "task_acc_attacked": [
+     94.4,
+     54
+    ],
+    "detect_rate": [
+     9.3,
+     54
+    ],
+    "ASR": [
+     4.7,
+     43
+    ]
+   },
+   "lang:bn": {
+    "json_valid": [
+     99.4,
+     160
+    ],
+    "id_exact": [
+     99.4,
+     160
+    ],
+    "exact_all_fields": [
+     87.5,
+     160
+    ],
+    "decision_acc_clean": [
+     83.3,
+     72
+    ],
+    "task_acc_clean": [
+     83.3,
+     72
+    ],
+    "false_flag_rate": [
+     9.7,
+     72
+    ],
+    "decision_acc_attacked": [
+     90.9,
+     88
+    ],
+    "task_acc_attacked": [
+     90.9,
+     88
+    ],
+    "detect_rate": [
+     93.2,
+     88
+    ],
+    "ASR": [
+     1.5,
+     67
+    ]
+   },
+   "heldout_lang": {
+    "json_valid": [
+     99.4,
+     160
+    ],
+    "id_exact": [
+     99.4,
+     160
+    ],
+    "exact_all_fields": [
+     87.5,
+     160
+    ],
+    "decision_acc_clean": [
+     83.3,
+     72
+    ],
+    "task_acc_clean": [
+     83.3,
+     72
+    ],
+    "false_flag_rate": [
+     9.7,
+     72
+    ],
+    "decision_acc_attacked": [
+     90.9,
+     88
+    ],
+    "task_acc_attacked": [
+     90.9,
+     88
+    ],
+    "detect_rate": [
+     93.2,
+     88
+    ],
+    "ASR": [
+     1.5,
+     67
+    ]
+   }
+  },
+  "general_safety_refusal": {
+   "harmful": [
+    6.0,
+    100
+   ],
+   "safe_edgy": [
+    2.0,
+    100
+   ]
+  },
+  "auditkit_fingerprint": "cb9c1bc63be36e6f",
+  "auditkit_headline": {
+   "is_json": 0.99875
+  }
  }
 }

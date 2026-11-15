@@ -108,7 +108,12 @@ The headline tables above are the result. Per-language, per-style and per-task b
 1. **Most of the base model's failure is task skill, not safety.** Base Tiny Aya gets only 38% of decisions right even on clean inputs and drops a digit from almost every 5-digit id. Fine-tuning fixes the task (98%) and the injection behaviour together.
 2. **Robustness transfers within the task formats.** ASR is 0% on held-out attack styles (base64-encoded, fake completion, translation trick) and on Bengali, a language never used in training.
 3. **It transfers only partly to new tasks.** OOD ASR falls from 61.7% to 15.0%, but ticket routing keeps 39% ASR while the model flags the same injection 100% of the time. Flagging and resisting are separate skills, and training data for the second needs more task variety.
-4. **Safety-preserving fine-tuning has a cost here.** Plain SFT on this data did not erode general refusal (70% vs 71%, over-refusal 8% vs 8%). Lisa with SafeTune's default 6-row safety set raised harmful-prompt refusal to 80% but tripled over-refusal (27%) and cost about 6 points of task accuracy. The very small safety set is the likely cause, and the follow-up run with a 300-row BeaverTails safety set tests this: results pending (run in progress at submission time; see results/ when it lands).
+4. **Safety-preserving fine-tuning needs the right safety data.** Plain SFT on this data did not erode general refusal (70% vs 71%; over-refusal 8% vs 8%). Lisa with SafeTune's default 6-row refusal set raised harmful-prompt refusal to 80% but tripled over-refusal (27%) and cost about 6 points of task accuracy. We tested the obvious fix, a larger safety set from SafeTune's `load_harden_data(n=300)`, and it made things much worse: harmful-prompt refusal **collapsed from 71% to 6%** (over-refusal 2%), while task metrics were similar to Lisa (ASR 1.7%, clean decision accuracy 92.8%). Reading the loader explains why. Its `refusal_aux` rows are BeaverTails responses labelled *safe*, and many of those are helpful answers to risky prompts, not refusals. Alternating training on them taught the model to answer harmful requests (for example, it explained how a telemarketing scam works, while the plain-SFT model refused). The lesson: a safety-preserving method is only as good as its alignment set, and "safe-labelled" is not the same as "refusal". We do not release the Lisa-300 adapter; its predictions and training log are in `results/` as evidence.
+
+| Lisa ablation (test) | ASR | Clean decision acc. | Harmful refusal | Over-refusal |
+|---|---|---|---|---|
+| Lisa, default 6 refusal rows | 2.0% | 91.6% | 80% | 27% |
+| Lisa, `load_harden_data(n=300)` (BeaverTails safe-labelled) | 1.7% | 92.8% | **6%** | 2% |
 
 ## Limitations
 
@@ -116,12 +121,12 @@ The headline tables above are the result. Per-language, per-style and per-task b
 - Records and attacks are synthetic and template-based. Real tool outputs are longer and messier, and an adaptive attacker who knows the defence was not modelled.
 - Refusal is measured with a keyword detector on 100 + 100 prompts, which is coarse. A judge model (for example WildGuard) would be more accurate.
 - One seed per configuration. Bootstrap CIs cover sampling noise in the test set, not training variance.
-- Only one safety-preserving method (Lisa) was run to completion. SafeGrad did not fit in 16 GB for this vocabulary.
+- Only one safety-preserving method (Lisa, two safety sets) was run to completion. SafeGrad did not fit in 16 GB for this vocabulary.
 - **Dual use:** the dataset contains working injection strings in 8 languages. They are simple, publicly known patterns aimed at fictional records, and they are released so that defences can be tested. The data contains no personal data; all names, ids and accounts are synthetic.
 
 ## With more credits
 
-- **SafeGrad on an A100/L4 (40 GB+):** compare gradient-surgery hardening with Lisa and plain SFT on the same data. We expect it to keep the 80% harmful-refusal gain without the over-refusal.
+- **A curated refusal set** (CuratorKIT-filtered BeaverTails prompts paired with verified refusals, plus benign look-alikes against over-refusal) for Lisa, and **SafeGrad on an A100/L4 (40 GB+):** compare gradient-surgery hardening with Lisa and plain SFT on the same data. We expect it to keep the 80% harmful-refusal gain without the over-refusal.
 - **Task variety:** 20+ task families, multi-turn agent traces and real tool schemas (AgentTune-style tool calls), aimed at the detect-but-obey gap seen in OOD ticket routing.
 - **Adaptive attacks:** attacks optimised against the tuned model (best-of-N, GCG-style suffixes) and translated by Aya Expanse 32B, plus 3 seeds per arm.
 - **Judge-based safety eval** (WildGuard / AuditKIT GEval), and a cost comparison of self-hosted Tiny Aya against a closed API per 1k agent calls.
