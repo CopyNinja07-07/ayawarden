@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Track** | Track 2: AI Red Teaming, Safety and Alignment |
-| **Problem statements** | **2a-3** (injection hidden in tools or documents), **2a-4** (multilingual and code-mixed safety), **2b-5** (safety-preserving fine-tuning vs plain fine-tuning) |
+| **Problem statements** | **2a-2** (adversarial and safety evaluation sets: a labelled, exactly-scored injection benchmark), **2a-4** (multilingual and code-mixed safety), **2b-5** (safety-preserving fine-tuning vs plain fine-tuning) |
 | **Base model** | [CohereLabs/tiny-aya-global](https://huggingface.co/CohereLabs/tiny-aya-global) (3.35B, CC-BY-NC-4.0) |
 | **Method** | CuratorKIT data curation → SafeTune `PlainSFTTrainer` and `LisaTrainer` (LoRA r=16, 1 epoch, one T4) → AuditKIT metrics + bootstrap significance |
 | **Team** | RBoysXAi: Suryansh Pratap Singh ([@SuryanshHere](https://huggingface.co/SuryanshHere)), Nikhil Kumar ([@nobleimposter](https://huggingface.co/nobleimposter)), Raj Jha ([@0xr4j](https://huggingface.co/0xr4j)) |
